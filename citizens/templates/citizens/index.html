@@ -1,0 +1,41 @@
+{% extends 'citizens/base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+    <div>
+        {% if messages %}
+            {% for message in messages %}
+            <div class="container-fluid p-0">
+            <div class="alert {{ message.tags }} alert-dismissible" role="alert" >
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+                {{ message }}
+            </div>
+            </div>
+            {% endfor %}
+        </ul>
+        {% endif %}
+    </div>  
+    <br>
+    <div class="container mt-5 mb-5">
+        <div class="row d-flex align-items-center justify-content-center">
+            <div class="col-md-4">
+                <div class="card px-5 py-5">
+                        <form method="POST" action="">
+                            <legend class="border-bottom mb-4">Citizen Age Calculator</legend>
+                            {% csrf_token %}
+                            <fieldset class="form-group">
+                                {{ form|crispy }}
+                            </fieldset>
+                            <div class="form-group">
+                                <button class="btn btn-outline-info" type="submit">Calculate Age</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>    
+    </div>
+{% endblock content %}
+
